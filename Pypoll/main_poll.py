@@ -89,5 +89,5 @@ with open(output_file, "w") as txt_file:
     txt_file.write(f"Diana DeGette: {diana_percent:.3f}% ({diana_votes})\n")
     txt_file.write(f"Raymon Anthony Doane: {raymon_percent:.3f}% ({raymon_votes})\n")
     txt_file.write(f"..............\n")
-    txt_file.write(f"Winner: {key}")
+    txt_file.write(f"Winner: {key}\n")
     txt_file.write(f"..............")
