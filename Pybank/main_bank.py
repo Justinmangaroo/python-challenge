@@ -8,7 +8,11 @@ output_file = os.path.join(".","analysis","budget_report.txt")
 
 # initialize variables
 total_months = 0
-
+total_profit = 0
+previous_value = 0
+total_changes = 0
+greatest_increase = 0
+greatest_decrease = 99999999
 
 #open and read csv
 with open(budget_data_csv) as csv_file:
@@ -27,7 +31,32 @@ with open(budget_data_csv) as csv_file:
     for row in csv_reader:
 
         # track total months
-        total_months = total_months + 1
+        total_months += 1
+        total_profit+=float(row[1])
+
+        current_value = float(row[1])
+        change = current_value - previous_value
+
+        if change > greatest_increase:
+            greatest_increase = change
+            greatest_increase_month = row[0]
+
+
+        if change < greatest_decrease:
+            greatest_decrease = change
+            greatest_decrease_month = row[0]
+  
+
+
+
+        previous_value = float(row[1])
+
+        total_changes+=change
+
+average_change = total_changes / total_months        
+
+        
+    
 
 
 # record output
@@ -35,6 +64,11 @@ output = (
     f"Financial Analysis\n"
     f".......\n"
     f"Total Months: {total_months}\n"
+    f"Total: {total_profit}\n"
+    f"Average Change: {average_change}\n"
+    f"Greatest Increase in Profits: {greatest_increase_month} ({greatest_increase})\n"
+    f"Greatest Increase in Profits: {greatest_decrease_month} ({greatest_decrease})\n"
+
 
 )
 
